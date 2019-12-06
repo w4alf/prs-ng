@@ -1,0 +1,65 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>{{title}} </span>
+     
+       </div>
+</div>
+
+<p *ngIf='!user'>Loading...</p>
+<div *ngIf='user'>
+    <main class="single">
+        <table class="table table-sm"  style="width: 800px">
+            <tr>
+                <td width="200px">Username</td>
+                <td><input [(ngModel)]="user.userName" class="rounded" type="text"> </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input [(ngModel)]="user.password" class="rounded" type="text"> </td>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td><input [(ngModel)]="user.firstName" class="rounded" type="text"> </td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input [(ngModel)]="user.lastName" class="rounded" type="text"> </td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td><input [(ngModel)]="user.phoneNumber" class="rounded" type="text"> </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input [(ngModel)]="user.email" class="rounded" type="text"> </td>
+            </tr>
+            <tr>
+                <td>Is Reviewer</td>
+                <td>
+
+                   <!-- <input [(ngModel)]="user.reviewer" class="rounded" type="text"> -->
+                   <select [(ngModel)]="user.reviewer" class="rounded"  style="width: 180px">
+                       <option value="true" >TRUE</option>
+                       <option value="false">FALSE</option>
+                   </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Is Admin</td>
+                <td>
+                   <!-- <input [(ngModel)]="user.admin" class="rounded" type="text"> -->
+                    <select [(ngModel)]="user.admin" class="rounded"  style="width: 180px">
+                            <option value="true" >TRUE</option>
+                            <option value="false">FALSE</option>
+                        </select>
+                
+                </td>
+            </tr>            
+
+
+
+        </table>
+    </main>
+    <span><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span>
+</div>

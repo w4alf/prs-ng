@@ -1,0 +1,40 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>{{title}} </span>
+        <span><a routerLink='/users/create'>
+                <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
+        </span>
+    </div>
+</div>
+<table class="table" style="width: 1200px">
+
+    <tr>
+        <th><a (click)="sortBy('id')">ID</a></th>
+        <th><a (click)="sortBy('userName')">Username</a></th>
+        <th>Password</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Is Reviewer</th>
+        <th>Is Admin</th>
+        <th>Action</th>
+
+    </tr>
+
+    <tr *ngFor="let u of users | sort:sortCriteria:sortOrder">
+        <td>{{u.id}}</td>
+        <td>{{u.userName}}</td>
+        <td>{{u.password}}</td>
+        <td>{{u.firstName}}</td>
+        <td>{{u.lastName}}</td>
+        <td>{{u.phoneNumber}}</td>
+        <td>{{u.email}}</td>
+        <td>{{u.reviewer}}</td>
+        <td>{{u.admin}}</td>
+        
+        <td><a routerLink='/users/detail/{{u.id}}'><img src='assets/details.png' width='20' height='20' title='Detail'></a> | <a routerLink='/users/edit/{{u.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td>
+    </tr>
+
+</table>

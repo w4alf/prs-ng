@@ -1,0 +1,50 @@
+<app-menu></app-menu>
+<div class="component">
+        <section class="heading">
+            <span class="page-title font-weight-bold font-italic">{{title}}</span>
+            <span> | <a routerLink="/vendors/list">Return to list...</a></span>
+        </section>
+        <main class="single">
+                <table class="table table-sm" style="width: 800px">
+                        <tr>
+                            <td width="150px">Code</td>
+                            <td><input [(ngModel)]="vendor.code" class="rounded" type="text" maxlength="10" style="width: 220px" disabled> </td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td><input [(ngModel)]="vendor.name" class="rounded" type="text" style="width: 220px" disabled> </td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td><input [(ngModel)]="vendor.address" class="rounded" type="text" style="width: 220px" disabled> </td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td><input [(ngModel)]="vendor.city" class="rounded" type="text" style="width: 220px" disabled> </td>
+                        </tr>
+                        <tr>
+                            <td>State</td>
+                            <td><input [(ngModel)]="vendor.state" class="rounded" type="text" maxlength="2" style="width: 220px" disabled> </td>
+                        </tr>
+                        <tr>
+                            <td>Zip</td>
+                            <td><input [(ngModel)]="vendor.zip" class="rounded" type="text" maxlength="5" style="width: 220px" disabled> </td>
+                        </tr>
+                        <tr>
+                            <td>Phone Number</td>
+                            <td><input [(ngModel)]="vendor.phoneNumber" class="rounded" type="text" maxlength="10" style="width: 220px" disabled> </td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input [(ngModel)]="vendor.email" class="rounded" type="text" style="width: 220px" disabled> </td>
+                        </tr>
+            
+            
+            
+                    </table>
+        </main>
+        <span >
+            <span><a routerLink="/vendors/edit/{{vendor.id}}" class="btn btn-sm btn-warning">Edit</a></span>
+            <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
+        </span>
+    </div>

@@ -1,0 +1,68 @@
+<app-menu></app-menu>
+<div><b>Request</b></div>
+<table class="table" style="width: 1400px">
+
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Total</th>
+    </tr>
+
+    <tr>
+        <td>{{request.id}}</td>
+        <td>{{request.description}}</td>
+        <td>{{request.status}}</td>
+        <td>{{request.total | currency}}</td>
+    </tr>    
+ 
+
+</table>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'><b>{{title}} </b></span>
+
+    </div>
+</div>
+<table class="table" style="width: 1400px">
+
+    <tr>
+        <th><a (click)="sortBy('id')">ID</a></th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Line Total</th>
+        
+    </tr>
+
+   
+    <tr *ngFor="let l of lines | sort:sortCriteria:sortOrder">
+        <td>{{l.id}}</td>
+        <td>{{l.product.name}}</td>
+        <td>{{l.quantity}}</td>
+        <td>{{l.product.price | currency}}</td>
+        <td>{{l.lineTotal | currency}}</td>
+  
+    </tr>    
+ 
+
+</table>
+
+<div *ngIf='(lines < 1)'>
+    <br>
+        <table style="width: 1400px">
+        <tr>
+            <td style="background-color: orange" ><b>No Line Items Yet!</b></td>
+        </tr> 
+    </table> 
+</div>
+
+<table>
+    <tr>
+        <td><button (click)="approve()" class="btn btn-sm btn-primary">Approve</button></td>
+        <td><input [(ngModel)]='request.reasonForRejection' class="rounded" type="text" placeholder='Reason for Rejection'></td>
+        <td><button *ngIf='request.reasonForRejection' (click)="reject()" class="btn btn-sm btn-primary" style="background-color: red; margin:10px">Reject</button></td>
+    </tr>
+    
+</table>
+
