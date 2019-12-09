@@ -12,8 +12,12 @@
                 <table class="table table-sm" style="width: 800px">
                         <tr>
                                 <td width="150px">User</td>
-                                <td><select [(ngModel)]="request.user" class="rounded" [compareWith]="compUser">
-                                        <option *ngFor='let u of users'[ngValue]='u'>{{u.userName}}</option>
+                                <td>
+                                    <select [(ngModel)]="request.user" *ngIf='isAdmin' class="rounded" [compareWith]="compUser">
+                                        <option *ngFor='let u of users'[ngValue]='u' >{{u.userName}}</option>
+                                    </select>
+                                    <select [(ngModel)]="request.user" *ngIf='!isAdmin' class="rounded" [compareWith]="compUser" disabled>
+                                            <option *ngFor='let u of users'[ngValue]='u' >{{u.userName}}</option>
                                         </select>
                                 </td>
                             </tr>
@@ -32,11 +36,12 @@
                         <tr>
                          <td>Delivery Method</td>    
                             <td>
-                                <input [(ngModel)]='request.deliveryMode' class="rounded" type="radio" value="pickup">Pickup <br>
-                                <input [(ngModel)]='request.deliveryMode' class="rounded" type="radio" value="mail">Mail <br>
+                                <input [(ngModel)]='request.deliveryMode' [checked]="request.deliveryMode == 'Pick Up'" class="rounded" type="radio" value="Pick up">Pick up <br>
+                                <input [(ngModel)]='request.deliveryMode' [checked]="request.deliveryMode == 'Mail'" class="rounded" type="radio" value="Mail">Mail <br>
                             </td>
                         </tr>
                     </table>
         </main>
-        <span><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span> | <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
+        <span *ngIf='isAdmin||request.status=="New"||request.status=="Review"'><button (click)="save()" class="btn btn-sm btn-primary">Save</button> | </span>
+        <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
     </div>

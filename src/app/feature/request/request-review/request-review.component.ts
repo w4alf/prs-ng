@@ -25,8 +25,9 @@ export class RequestReviewComponent extends BaseComponent implements OnInit {
   ngOnInit() {
 
     super.ngOnInit();
-   
-    console.log("id: " + this.loggedInUser.id);
+
+    // verify that the user is logged in
+    this.sysSvc.checkLogin();
       
 
     //get requests for Review

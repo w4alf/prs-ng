@@ -3,20 +3,29 @@ import { User } from 'src/app/model/user.class';
 import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { SystemService } from 'src/app/service/system.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css']
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent extends BaseComponent implements OnInit {
 
   user: User = new User();
   title: string = "User Edit";
   id: number = 0;
 
-  constructor(private userSvc: UserService, private router:Router, private route: ActivatedRoute, private loc: Location) { }
+  constructor(protected sysSvc: SystemService, private userSvc: UserService, private router:Router, private route: ActivatedRoute, private loc: Location) {
+    super(sysSvc);
+   }
   ngOnInit() {
+
+    super.ngOnInit();
+
+    // verify that the user is logged in
+    this.sysSvc.checkLogin();
 
     //get the id from the URL
     this.route.params.subscribe(parms=>this.id=parms['id']);
@@ -44,6 +53,11 @@ export class UserDetailComponent implements OnInit {
 
     });
 
+  }
+
+  backClicked() {
+
+    this.loc.back();
   }
 
 }

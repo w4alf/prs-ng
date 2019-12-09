@@ -31,6 +31,10 @@ export class LineItemCreateComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
 
+    super.ngOnInit();
+
+    // verify that the user is logged in
+    this.sysSvc.checkLogin();
 
     //get list of products
     this.productSvc.list().subscribe(jr => {

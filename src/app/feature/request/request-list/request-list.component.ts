@@ -5,6 +5,8 @@ import { BaseComponent } from '../../base/base.component';
 import { Request } from '../../../model/request.class';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { UserService } from 'src/app/service/user.service';
+import { User } from 'src/app/model/user.class';
 
 
 @Component({
@@ -15,21 +17,24 @@ import { Location } from '@angular/common';
 export class RequestListComponent extends BaseComponent implements OnInit {
 
   requests: Request[] = [];
- 
   title: string = "Request List";
 
 
-  constructor( private requestSvc: RequestService, protected sysSvc: SystemService,private router:Router, private route: ActivatedRoute, private loc: Location) { 
+  constructor(private requestSvc: RequestService, protected sysSvc: SystemService, private router: Router, private route: ActivatedRoute, private loc: Location) {
     super(sysSvc);
   }
 
   ngOnInit() {
 
     super.ngOnInit();
-      
-      this.requestSvc.list().subscribe(jr=> {
+
+    // verify that the user is logged in
+    this.sysSvc.checkLogin();
+    
+    //get request list
+    this.requestSvc.list().subscribe(jr => {
       this.requests = jr.data as Request[];
-      
+
     });
 
 

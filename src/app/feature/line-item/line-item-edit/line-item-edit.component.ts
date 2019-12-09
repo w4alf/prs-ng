@@ -31,6 +31,10 @@ export class LineItemEditComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
 
+    super.ngOnInit();
+
+    // verify that the user is logged in
+    this.sysSvc.checkLogin();
 
     //get lineItem
     this.route.params.subscribe(parms => this.id = parms['id']);

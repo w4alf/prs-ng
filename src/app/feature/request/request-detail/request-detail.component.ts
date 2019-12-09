@@ -5,13 +5,15 @@ import { UserService } from 'src/app/service/user.service';
 import { RequestService } from 'src/app/service/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Request } from '../../../model/request.class';
+import { SystemService } from 'src/app/service/system.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-request-detail',
   templateUrl: './request-detail.component.html',
   styleUrls: ['./request-detail.component.css']
 })
-export class RequestDetailComponent implements OnInit {
+export class RequestDetailComponent extends BaseComponent implements OnInit {
   
   request: Request = new Request();
   title: string = "Request Detail";
@@ -20,9 +22,16 @@ export class RequestDetailComponent implements OnInit {
 
 
 
-  constructor(private userSvc: UserService, private requestSvc: RequestService, private router:Router, private route: ActivatedRoute, private loc: Location) { }
+  constructor(protected sysSvc: SystemService, private userSvc: UserService, private requestSvc: RequestService, private router:Router, private route: ActivatedRoute, private loc: Location) { 
+    super(sysSvc);
+  }
 
   ngOnInit() {
+
+    super.ngOnInit();
+
+    // verify that the user is logged in
+    this.sysSvc.checkLogin();
 
     //get request
     this.route.params.subscribe(parms=>this.id=parms['id']);
@@ -48,5 +57,11 @@ export class RequestDetailComponent implements OnInit {
      });
 
   }
+
+  backClicked() {
+
+    this.loc.back();
+  }
+
 
 }

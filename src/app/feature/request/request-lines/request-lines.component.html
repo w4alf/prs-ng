@@ -23,7 +23,7 @@
 <div class='component-content'>
     <div class='lefthalf'>
         <span class='component-title'><b>{{title}} </b></span>
-        <span><a routerLink='/line-items/create/{{request.id}}'>
+        <span *ngIf='isAdmin||request.status=="New"||request.status=="Review"'><a routerLink='/line-items/create/{{request.id}}'>
                 <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
         </span>
     </div>
@@ -47,8 +47,11 @@
         <td>{{l.quantity}}</td>
         <td>{{l.product.price | currency}}</td>
         <td>{{l.lineTotal | currency}}</td>
-        <td><a routerLink='/line-items/edit/{{l.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a> |
-            <img src='assets/delete.jpg' width='20' height='20' title='Delete' (click)='delete(l.id)'> </td>
+        <td>
+            <span *ngIf='isAdmin||request.status=="New"||request.status=="Review"'><a routerLink='/line-items/edit/{{l.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a> |
+            <img src='assets/delete.jpg' width='20' height='20' title='Delete' (click)='delete(l.id)'>
+            </span>
+        </td>
     </tr>    
  
 
@@ -57,7 +60,8 @@
 
 
 </table>
-<span><button (click)="review()" class="btn btn-sm btn-primary">Save</button></span>
+<span *ngIf='isAdmin||request.status=="New"||request.status=="Review"'><button (click)="review()" class="btn btn-sm btn-primary">Submit for Review</button> | </span>
+ <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
 
 <div *ngIf='(lines < 1)'>
     <br>

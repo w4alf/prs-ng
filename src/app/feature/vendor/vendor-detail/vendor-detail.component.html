@@ -1,8 +1,8 @@
 <app-menu></app-menu>
 <div class="component">
         <section class="heading">
-            <span class="page-title font-weight-bold font-italic">{{title}}</span>
-            <span> | <a routerLink="/vendors/list">Return to list...</a></span>
+            <span>{{title}}</span>
+            
         </section>
         <main class="single">
                 <table class="table table-sm" style="width: 800px">
@@ -43,8 +43,9 @@
             
                     </table>
         </main>
-        <span >
+        <span *ngIf="isAdmin">
             <span><a routerLink="/vendors/edit/{{vendor.id}}" class="btn btn-sm btn-warning">Edit</a></span>
-            <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
+            <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button> | </span>
         </span>
+        <span>  <button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
     </div>

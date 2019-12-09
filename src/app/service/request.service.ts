@@ -65,7 +65,12 @@ export class RequestService {
     
   }
 
+  reject(request: Request): Observable<JsonResponse> {
 
+    return this.http.put(this.url +'reject', request) as Observable<JsonResponse>;
+    
+  }
+  
 
 
 

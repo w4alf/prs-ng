@@ -32,19 +32,13 @@ export class RequestLinesComponent extends BaseComponent implements OnInit {
 
     super.ngOnInit();
 
+    // verify that the user is logged in
+    this.sysSvc.checkLogin();
+
 
     //get request
     this.route.params.subscribe(parms => this.id = parms['id']);
 
-
-    // //get line item id
-    //     this.route.params.subscribe(parms=>this.id=parms['id']);
-    //     this.lineItemSvc.get(this.id).subscribe(jr=>{
-    //     this.lineItem = jr.data as LineItem;  
-
-    // });
-
-    console.log("request id: " + this.request.id);
 
     this.refresh();
 
@@ -91,7 +85,11 @@ export class RequestLinesComponent extends BaseComponent implements OnInit {
     });
 
   }
+  
+  backClicked() {
 
+    this.loc.back();
+  }
 
 
 }

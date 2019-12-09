@@ -2,12 +2,12 @@
 <div class='component-content'>
         <div class='lefthalf'>
             <span class='component-title'>{{title}} </span>
-            <span><a routerLink='/products/create'>
+            <span *ngIf='isAdmin'><a routerLink='/products/create'>
                     <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
             </span>
         </div>
     </div>
-    <table class="table" style="width: 1400px">
+    <table class="table" >
     
         <tr>
             <th><a (click)="sortBy('id')">ID</a></th>
@@ -21,7 +21,7 @@
     
         </tr>
     
-        <tr *ngFor="let p of products | sort:sortCriteria:sortOrder">
+        <tr *ngFor="let p of products">
             <td>{{p.id}}</td>
             <td>{{p.vendor.name}}</td>
             <td>{{p.partNumber}}</td>
@@ -30,7 +30,7 @@
             <td>{{p.unit}}</td>
             <td>{{p.photoPath}}</td>
             <td><a routerLink='/products/detail/{{p.id}}'><img src='assets/details.png' width='20' height='20' title='Detail' ></a>| 
-                <a routerLink='/products/edit/{{p.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit' ></a></td>
+                <a *ngIf='isAdmin' routerLink='/products/edit/{{p.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit' ></a></td>
         </tr>
     
     </table>

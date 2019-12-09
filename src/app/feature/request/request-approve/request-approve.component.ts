@@ -31,6 +31,9 @@ export class RequestApproveComponent extends BaseComponent implements OnInit {
 
     super.ngOnInit();
 
+    // verify that the user is logged in
+    this.sysSvc.checkLogin();
+
     this.refresh();
 
   }
@@ -51,10 +54,28 @@ export class RequestApproveComponent extends BaseComponent implements OnInit {
 
     });
 
-  
   }  
 
-  
+  approve(): void {
+   
+    this.requestSvc.approve(this.request).subscribe(jresp=>{
+      console.log("approved request:");
+      console.log(this.request);
+      this.router.navigateByUrl("/requests/request-review")
+    });
 
+
+
+  }
+
+  reject(): void {
+
+    this.requestSvc.reject(this.request).subscribe(jresp=>{
+      console.log("rejected request:");
+      console.log(this.request);
+      this.router.navigateByUrl("/requests/request-review")
+    });  
+   
+  } 
 
 }

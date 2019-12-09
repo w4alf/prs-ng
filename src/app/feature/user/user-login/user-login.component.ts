@@ -21,7 +21,7 @@ export class UserLoginComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user.userName = 'system';
+    this.user.userName = '';
     this.user.password = 'sesame';
 
     // admin and reviewer option for testing

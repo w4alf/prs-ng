@@ -5,22 +5,31 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Vendor } from 'src/app/model/vendor.class';
 import { VendorService } from 'src/app/service/vendor.service';
+import { SystemService } from 'src/app/service/system.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
   styleUrls: ['./product-edit.component.css']
 })
-export class ProductEditComponent implements OnInit {
+export class ProductEditComponent extends BaseComponent implements OnInit {
 
   product: Product = new Product();
   title: string = "Product Edit";
   id: number = 0;
   vendors: Vendor[] = [];
 
-  constructor(private vendorSvc: VendorService, private productSvc: ProductService, private router:Router, private route: ActivatedRoute, private loc: Location) { }
+  constructor(protected sysSvc: SystemService, private vendorSvc: VendorService, private productSvc: ProductService, private router:Router, private route: ActivatedRoute, private loc: Location) {
+    super(sysSvc);
+   }
 
   ngOnInit() {
+
+    super.ngOnInit();
+
+    // verify that the user is logged in
+    this.sysSvc.checkLogin();
     
   //get list of vendors
     this.vendorSvc.list().subscribe(jr=> {

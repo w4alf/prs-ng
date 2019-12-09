@@ -27,6 +27,10 @@ import { SystemService } from 'src/app/service/system.service';
 
   ngOnInit() {
 
+    super.ngOnInit();
+
+    // verify that the user is logged in
+    this.sysSvc.checkLogin();
 
     this.request.user = this.sysSvc.loggedInUser;
 

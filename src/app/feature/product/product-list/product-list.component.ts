@@ -25,6 +25,9 @@ export class ProductListComponent extends BaseComponent implements OnInit {
   ngOnInit() {
 
     super.ngOnInit();
+
+    // verify that the user is logged in
+    this.sysSvc.checkLogin();
       
     console.log("calling product service list");
 

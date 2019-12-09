@@ -11,6 +11,8 @@
         <th><a (click)="sortBy('id')">ID</a></th>
         <th><a (click)="sortBy('user')">Username</a></th>
         <th>Description</th>
+        <th><a (click)="sortBy('submittedDate')">Submit Date</a></th>
+        <th><a (click)="sortBy('dateNeeded')">Date Needed</a></th>
         <th>Status</th>
         <th>Total</th>
         <th>Action</th>
@@ -20,6 +22,8 @@
         <td>{{r.id}}</td>
         <td>{{r.user.userName}}</td>
         <td>{{r.description}}</td>
+        <td>{{r.submittedDate}}</td>
+        <td>{{r.dateNeeded}}</td>
         <td>{{r.status}}</td>
         <td>{{r.total |currency}}</td>
         <td><a routerLink='/requests/request-approve/{{r.id}}'><img src='assets/review.png' width='20' height='20' title='Detail'></a> </td>
