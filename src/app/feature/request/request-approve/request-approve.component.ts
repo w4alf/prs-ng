@@ -58,9 +58,11 @@ export class RequestApproveComponent extends BaseComponent implements OnInit {
 
   approve(): void {
    
+    //clear out reason for Rejection JIC
+    this.request.reasonForRejection='';
+
     this.requestSvc.approve(this.request).subscribe(jresp=>{
-      console.log("approved request:");
-      console.log(this.request);
+
       this.router.navigateByUrl("/requests/request-review")
     });
 
@@ -71,8 +73,7 @@ export class RequestApproveComponent extends BaseComponent implements OnInit {
   reject(): void {
 
     this.requestSvc.reject(this.request).subscribe(jresp=>{
-      console.log("rejected request:");
-      console.log(this.request);
+
       this.router.navigateByUrl("/requests/request-review")
     });  
    

@@ -53,7 +53,21 @@
                     </tr>
                 </table>
     </main>
-    <span><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span> | <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
+    <table>
+        <tr>
+            <td>
+                <span *ngIf='!validated'style="color:red"><b>* Please enter the Required Fields</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span ><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span> | <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>      
+            </td>
+        </tr>
+    </table>
+
+    
+    
 </div>
 
 

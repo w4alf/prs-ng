@@ -10,6 +10,7 @@ import { ProductService } from 'src/app/service/product.service';
 import { Product } from 'src/app/model/product.class';
 import { Request } from 'src/app/model/request.class';
 
+
 @Component({
   selector: 'app-line-item-create',
   templateUrl: './line-item-create.component.html',
@@ -39,38 +40,35 @@ export class LineItemCreateComponent extends BaseComponent implements OnInit {
     //get list of products
     this.productSvc.list().subscribe(jr => {
       this.products = jr.data as Product[];
-      console.log("products: ", this.products);
 
     });
 
     //get request
     this.route.params.subscribe(parms => this.id = parms['id']);
     this.requestSvc.get(this.id).subscribe(jr => {
-    this.request = jr.data as Request;
-    this.lineItem.request = this.request;
-   
-    console.log(this.request);
-  });
+      this.request = jr.data as Request;
+      this.lineItem.request = this.request;
+
+    });
 
 
-    }
+  }
 
   save(): void {
 
-      this.lineItemSvc.save(this.lineItem).subscribe(jresp => {
+    this.lineItemSvc.save(this.lineItem).subscribe(jresp => {
 
-        console.log("Created Line Item= " + this.lineItem);
+    
+      this.router.navigateByUrl("/requests/lines/" + this.id);
 
-        this.router.navigateByUrl("/requests/lines/"+this.id);
+    });
+  }
 
-      });
-    }
-  
   backClicked() {
 
-      this.loc.back();
+    this.loc.back();
 
-    }
+  }
 
 
 

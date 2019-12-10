@@ -13,15 +13,15 @@ import { SystemService } from 'src/app/service/system.service';
   templateUrl: './request-create.component.html',
   styleUrls: ['./request-create.component.css']
 })
-  export class RequestCreateComponent extends BaseComponent implements OnInit {
+export class RequestCreateComponent extends BaseComponent implements OnInit {
 
-    
+
   request: Request = new Request();
   title: string = "Request Create";
- 
- 
+  validated: boolean = true;
 
-  constructor(protected sysSvc: SystemService, private requestSvc: RequestService, private userSvc: UserService, private router:Router, private route: ActivatedRoute, private loc: Location) { 
+
+  constructor(protected sysSvc: SystemService, private requestSvc: RequestService, private userSvc: UserService, private router: Router, private route: ActivatedRoute, private loc: Location) {
     super(sysSvc);
   }
 
@@ -38,18 +38,28 @@ import { SystemService } from 'src/app/service/system.service';
 
   save(): void {
 
-    this.requestSvc.save(this.request).subscribe(jresp=>{
-      console.log("Created Request..");
-  
-      console.log(this.request);
-      this.router.navigateByUrl("/requests/list")
-    });
+    if (this.request.description == '' || this.request.justification == '' || this.request.dateNeeded == null || this.request.deliveryMode == '') {
+
+    this.validated =false;  
+
+    } 
+    else {
+
+      this.validated = true;
+
+      this.requestSvc.save(this.request).subscribe(jresp => {
+        this.router.navigateByUrl("/requests/list")
+      });
+
+    }  
+
   }
-  
+
+
   backClicked() {
 
     this.loc.back();
-    
+
   }
 
 

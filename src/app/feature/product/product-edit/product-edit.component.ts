@@ -34,7 +34,7 @@ export class ProductEditComponent extends BaseComponent implements OnInit {
   //get list of vendors
     this.vendorSvc.list().subscribe(jr=> {
       this.vendors = jr.data as Vendor[];
-      console.log("vendors: ", this.vendors);
+     
 
     }); 
 

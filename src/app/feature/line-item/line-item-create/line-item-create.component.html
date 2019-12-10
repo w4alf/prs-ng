@@ -13,8 +13,8 @@
             <table class="table table-sm" style="width: 800px">
                     <tr>
                         <td width="150px">Product</td>
-                        <td><select [(ngModel)]="lineItem.product" class="rounded" >
-                                <option *ngFor='let p of products'[ngValue]='p'>{{p.name}} | {{p.vendor.name}}</option>
+                        <td><select [(ngModel)]="lineItem.product" class="rounded">
+                                <option *ngFor='let p of products | sort:"name"'[ngValue]='p'>{{p.name}} | {{p.vendor.name}}</option>
                                 </select>
                         </td>
                     </tr>

@@ -35,7 +35,7 @@ export class ProductCreateComponent extends BaseComponent implements OnInit {
     //get list of vendors
       this.vendorSvc.list().subscribe(jr=> {
         this.vendors = jr.data as Vendor[];
-        console.log("vendors: ", this.vendors);
+      
   
       }); 
   
@@ -53,7 +53,7 @@ export class ProductCreateComponent extends BaseComponent implements OnInit {
    save(): void {
 
     this.productSvc.save(this.product).subscribe(jresp=>{
-      console.log("Created product..");
+     
   
       console.log(this.product);
       this.router.navigateByUrl("/products/list")

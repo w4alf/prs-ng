@@ -67,7 +67,7 @@
             </tr>
         </table>
     </main>
-    <span *ngIf='isAdmin||request.status=="New"||request.status=="Review"'>
+    <span *ngIf='isAdmin||request.status=="New"'>
         <span><a routerLink="/requests/edit/{{request.id}}" class="btn btn-sm btn-warning">Edit</a></span>
         <span> | <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button> | </span>
        

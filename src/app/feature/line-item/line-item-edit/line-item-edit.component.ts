@@ -44,6 +44,9 @@ export class LineItemEditComponent extends BaseComponent implements OnInit {
     });
 
     
+
+
+
     //get list of products
     this.productSvc.list().subscribe(jr => {
       this.products = jr.data as Product[];
@@ -59,8 +62,8 @@ export class LineItemEditComponent extends BaseComponent implements OnInit {
       
       console.log("edit LineItem..");
       console.log(this.lineItem);
-
-      this.router.navigateByUrl("/requests/lines/"+this.request.id)
+      console.log("request id: " +this.lineItem.request.id)
+      this.router.navigateByUrl("/requests/lines/"+this.lineItem.request.id)
     });
   }
   

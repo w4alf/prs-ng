@@ -47,7 +47,7 @@ export class ProductDetailComponent extends BaseComponent implements OnInit {
     //get list of vendors
     this.vendorSvc.list().subscribe(jr=> {
       this.vendors = jr.data as Vendor[];
-      console.log("vendors: ", this.vendors);
+      
 
     }); 
 
@@ -58,7 +58,7 @@ export class ProductDetailComponent extends BaseComponent implements OnInit {
   delete(): void {
 
     this.productSvc.delete(this.id).subscribe(jr=>{
-      console.log("deleting product..");
+      
 
    
       this.router.navigateByUrl("/products/list")
