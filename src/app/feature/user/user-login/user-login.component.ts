@@ -24,9 +24,7 @@ export class UserLoginComponent extends BaseComponent implements OnInit {
     this.user.userName = '';
     this.user.password = 'sesame';
 
-    // admin and reviewer option for testing
-    //this.user.userName = 'sblessing';
-    //this.user.password = 'login';
+
 
     //  
     this.sysSvc.loggedInUser =null;

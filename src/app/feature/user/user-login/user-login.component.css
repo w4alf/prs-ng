@@ -1,0 +1,11 @@
+
+
+
+body {
+    background-image: url('../../../../assets/imperiallogo.png');
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+  }
